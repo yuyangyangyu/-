@@ -1,4 +1,7 @@
 package crawler;
+
+import java.util.ArrayList;
+
 /**
  * 景点的综合介绍 图片/名字/评分/特点/距离/id
  * @author yo
@@ -11,6 +14,7 @@ public class list_scenic {
 	private String markString;//特点
 	private String distanceString;//距离
 	private String idString;//id
+	private ArrayList<String> lat_LonArrayList =  new ArrayList<String>();
 	public list_scenic() {
 		
 	}
@@ -44,6 +48,9 @@ public class list_scenic {
 	public void setid(String id) {
 		this.idString=id;
 	}
+	public void setLat(String lat) {
+		this.lat_LonArrayList.add(lat);
+	}
 	/**
 	 * 获取list属性
 	 */
@@ -64,5 +71,8 @@ public class list_scenic {
 	}
 	public String getid() {
 		return idString;
+	}
+	public ArrayList<String> getlat(){
+		return lat_LonArrayList;
 	}
 }

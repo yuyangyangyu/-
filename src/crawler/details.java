@@ -30,10 +30,6 @@ public class details {
 		this.service.add(str);
 	}
 	
-	
-	
-	
-	
 	public String gettime() {
 		return time;
 	}

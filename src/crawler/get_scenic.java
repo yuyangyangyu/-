@@ -43,6 +43,9 @@ public class get_scenic {
 		}
         return this.list;
 	}
+	/*
+	 * 获取景点详情
+	 */
 	public details get_details(String id) throws ParseException, IOException{
 		details placeDetails =new details();
 		request rqRequest= new request();
