@@ -37,6 +37,8 @@ public class get_scenic {
 			String score  =js.getString("commentScore");
 			String id =js.getString("id");
 			String distance  =js.getString("distanceStr");
+			String latString = js.getString("coordInfo");//获取经纬度
+			//JSONArray lat_lon = new JSONArray().parseArray(latString);
 			list_scenic scenic =new list_scenic(name, img, score, mark, distance, id);
 			System.out.println(id);
 			this.list.add(scenic);
