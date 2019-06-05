@@ -12,6 +12,7 @@ public class crawler {
 		get_scenic lScenic = new get_scenic();
 		try {
 			details = lScenic.get_details("50223");
+			System.out.println(details.get_playtime());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

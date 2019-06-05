@@ -60,7 +60,7 @@ public class get_scenic {
 				JSONArray list_8=new JSONArray().parseArray(js.getString("desclist"));
 				for (int j = 0; j < list_8.size(); j++) {
 					JSONObject js_8=(JSONObject)list_8.get(j);
-					placeDetails.set_mark(js_8.get("text").toString());
+					placeDetails.set_mark(js_8.get("text").toString().trim());
 				}
 				continue;
 			}
@@ -95,11 +95,19 @@ public class get_scenic {
 			}
 			//景点介绍
 			if(js.getString("tcode").equals("99")) {
-				System.out.println("88888888888");
 				JSONArray list_99=new JSONArray().parseArray(js.getString("desclist"));
 				if(list_99.size()==1) {
 					JSONObject js_99=(JSONObject)list_99.get(0);
 					placeDetails.set_details(js_99.get("text").toString());
+				}
+				continue;
+			}
+			//建议游玩时间
+			if(js.getString("tcode").equals("80")) {
+				JSONArray list_80=new JSONArray().parseArray(js.getString("desclist"));
+				for (int j = 0; j < list_80.size(); j++) {
+					JSONObject js_78=(JSONObject)list_80.get(j);
+					placeDetails.set_playtime(js_78.get("text").toString());
 				}
 				continue;
 			}

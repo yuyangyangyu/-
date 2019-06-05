@@ -3,13 +3,18 @@ package crawler;
 import java.util.ArrayList;
 
 public class details {
-	//开放时间，优待政策，服务设施，景点特色，景点介绍，交通信息、
+	//开放时间，优待政策，服务设施，景点特色，景点介绍，交通信息、游玩时间
 	private String time ;
 	private ArrayList<String> policy= new ArrayList<String>();
 	private ArrayList<service> service= new ArrayList<service>();
 	private ArrayList<String> mark =new ArrayList<String>();
 	private String details;
 	private ArrayList<String> traffic =new ArrayList<String>();
+	private String play_time;
+	
+	public void set_playtime(String str) {
+		this.play_time = str;
+	}
 	
 	public void set_mark(String str) {
 		this.mark.add(str);
@@ -47,5 +52,8 @@ public class details {
 	}
 	public ArrayList<String> gettraffic() {
 		return traffic;
+	}
+	public String get_playtime() {
+		return play_time;
 	}
 }
