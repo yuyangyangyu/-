@@ -126,5 +126,29 @@ public class get_scenic {
 		
 		return placeDetails;
 	}
+	public List<Food> get_food(String lat,String lon)throws IOException {
+		ArrayList<Food> list = new ArrayList<Food>();
+		String url = "https://m.ctrip.com/restapi/soa2/10332/json/GetHomePageRestaruantListV706?_fxpcqlniredt=09031127410714579370&__gw_appid=99999999&__gw_ver=1.0&__gw_from=0&__gw_platform=H5";
+		String pro = String.format("{\"ViewDestId\":158,\"Lon\":%s,\"Lat\":%s,\"CurrentDestId\":0,\"SubVersion\":1,\"PageIndex\":1,\"PageSize\":20,\"DistanceFilter\":0,\"PriceFilter\":[],\"ParentPoiId\":0,\"CuisineFilter\":[],\"SceneFilter\":[],\"SellFilter\":[],\"FoodFilters\":[],\"ZoneId\":0,\"RegionId\":0,\"MetroId\":0,\"IsBusinessOpen\":false,\"PositionLat\":0,\"PositionLon\":0,\"MeiShiLinTypes\":[],\"Platform\":2,\"OrderType\":0,\"IsOnlyList\":false,\"IsMeiShiLin\":true,\"head\":{\"cid\":\"09031127410714579370\",\"ctok\":\"\",\"cver\":\"1.0\",\"lang\":\"01\",\"sid\":\"55551791\",\"syscode\":\"09\",\"auth\":null,\"extension\":[{\"name\":\"protocal\",\"value\":\"https\"}]},\"contentType\":\"json\"}", lon,lat);
+		org.json.JSONObject jsonObject=new org.json.JSONObject(pro);
+		String ssString=request.sendPost(url, pro);
+		JSONObject outJson = JSONObject.parseObject(ssString);
+		JSONArray ouArray = new JSONArray().parseArray(outJson.getString("Restaurants"));
+		
+		for (int i = 0; i < ouArray.size(); i++) {
+			JSONObject js =(JSONObject)ouArray.get(i);
+			String Name = js.getString("Name");//名称
+			org.json.JSONObject jsonObject1=new org.json.JSONObject(js.getString("BCoord"));//经纬度
+			String dis = js.getString("DistanceDesc");
+			String avg = js.getString("AveragePrice");
+			String img = js.getString("ImageUrl");
+			String score = js.getString("CommentScore"); 
+			String lat1 = Double.toString(jsonObject1.getDouble("Lat"));
+			String lon1 = Double.toString(jsonObject1.getDouble("Lng"));
+			Food food = new Food(img, Name, dis, avg, score, lat1, lon1);
+			list.add(food);
+		}
+		return list;
+	}
 
 }
